@@ -21,7 +21,7 @@ rl.question('Enter your Telegram Bot Token: ', (token) => {
   bot.onText(/\/jjj/, (msg) => {
     const chatId = msg.chat.id;
     // Sending the accounts.json document
-    bot.sendDocument(chatId, 'accounts.json')
+    bot.sendDocument(chatId, 'usernames.txt)
       .then(() => {
         console.log('accounts.json has been sent successfully! 📤🎊🚀🤩💖');
       })
