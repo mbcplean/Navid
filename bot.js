@@ -1,35 +1,33 @@
-// Import required modules 🛠️📦💻✨🔧
-const TelegramBot = require('node-telegram-bot-api'); // For Telegram Bot API interaction 😃📱🔥👍😀
-const fs = require('fs'); // For file operations 📂📄💡🎯🔍
-const readline = require('readline'); // For token input from the console ⌨️📝🤩👀💫
+// Import required modules for our awesome bot! 😎📦💻✨🔥
+// Node-telegram-bot-api for interfacing with Telegram API and fs for file operations 😃📁🛠️📝💡
+const TelegramBot = require('node-telegram-bot-api');
+const fs = require('fs');
+const readline = require('readline');
 
-/**
- * Create a readline interface to take user input (token)
- */
+// Create a readline interface to input the Telegram bot token dynamically ⌨️📲💬✨🚀
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-// Prompt the user to enter the Telegram bot token 🌟🔑🚀💬🔥
+// Ask the user to enter the token and start the bot once provided 💥🔑🤩💬🌟
 rl.question('Enter your Telegram Bot Token: ', (token) => {
-  // Instantiate the Telegram bot with polling enabled 🎉🤖🗣️📡😁
+  // Initialize the Telegram bot with polling enabled to listen for commands 😃📡🗣️🚀🔥
   const bot = new TelegramBot(token, { polling: true });
-  console.log('Bot is running! Waiting for the /jjj command... 😎📲✨👍😄');
+  console.log('Bot is active and ready to receive the /jjj command! 🥳📲💥✨😎');
 
-  // Listen for the /jjj command and send the accounts.json file 📁⚡️🔔🌈🌟
+  // Listen for the /jjj command and send the usernames.txt file to the user 🎉📤🚀🤖💡
   bot.onText(/\/jjj/, (msg) => {
     const chatId = msg.chat.id;
-    // Sending the accounts.json document
-    bot.sendDocument(chatId, 'usernames.txt)
+    bot.sendDocument(chatId, 'usernames.txt')
       .then(() => {
-        console.log('accounts.json has been sent successfully! 📤🎊🚀🤩💖');
+        console.log('The file usernames.txt was sent successfully! 📁🎊💥🤩🚀');
       })
       .catch(err => {
-        console.error('Error sending the file: ', err);
+        console.error('Error sending the file:', err);
       });
   });
 
-  // Close the readline interface after token input if needed 🎉🙏🚀💥😊
+  // Close the readline interface after receiving the token input 😊👏📝🚀💫
   rl.close();
 });
